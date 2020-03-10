@@ -40,27 +40,6 @@ inputs:
       summary: "Open VPN Server IP or Hostname"
       description: "Open VPN Server IP or Hostname"
       is_expand: true
-      is_required: true
-  - vpn_dns: "$VPN_DNS"
-    opts:
-      title: "VPN DNS"
-      summary: "VPN DNS Server Address"
-      description: "DNS address to resolve the domains correctly"
-      is_expand: true
-      is_required: true
-  - vpn_dns2: "$VPN_DNS2"
-    opts:
-      title: "VPN DNS 2"
-      summary: "Second VPN DNS Server Address"
-      description: "Another DNS address to resolve the domains correctly"
-      is_expand: true
-      is_required: true
-  - search_domain: "$VPN_SEARCH_DOMAIN"
-    opts:
-      title: "Search Domain"
-      summary: "Search Domain Address"
-      description: "Search domain address to resolve the domains correctly"
-      is_expand: true
       is_required: true    
   - port: "$VPN_PORT"
     opts:
@@ -80,18 +59,17 @@ inputs:
         - udp
         - tcp
         - tcp-client
-  - cert: "$VPN_CERT_CRT_BASE64"
+  - client_crt: "$VPN_CLIENT_CRT_BASE64"
     opts:
-      title: "Base64 encoded cert"
-      summary: "Base64 encoded cert"
+      title: "Base64 encoded Client Certificate"
+      summary: "Base64 encoded Client Certificate"
       is_expand: true
       is_required: true
       is_sensitive: true
-  - key: "$VPN_KEY"
+  - client_key: "$VPN_CLIENT_KEY_BASE64"
     opts:
-      title: "Private Key"
-      summary: "Private key to get authorized for VPN server"
-      description: "Private key to get authorized for VPN server"
+      title: "Base64 encoded Client Private Key"
+      summary: "Base64 encoded Client Private Key"
       is_required: true
       is_expand: true
       is_sensitive: true

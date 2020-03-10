@@ -5,9 +5,6 @@ app:
   envs:
   # Define the following secrets in .bitrise.secrets.yml
   - VPN_HOST: $VPN_HOST
-  - VPN_DNS: $VPN_DNS
-  - VPN_DNS2: $VPN_DNS2
-  - VPN_SEARCH_DOMAIN: $VPN_SEARCH_DOMAIN
   - VPN_PORT: $VPN_PORT
   - VPN_PROTO: $VPN_PROTO
   - VPN_CA_CRT_BASE64: $VPN_CA_CRT_BASE64
@@ -26,15 +23,12 @@ workflows:
     - script:
         inputs:
         - host: "$VPN_HOST"
-        - vpn_dns: "$VPN_DNS"
-        - vpn_dns2: "VPN_DNS2"
-        - search_domain: "$VPN_SEARCH_DOMAIN"
         - port: "$VPN_PORT"
         - proto: "$VPN_PROTO"
         - ca_crt: "$VPN_CA_CRT_BASE64"
-        - cert: "$VPN_CERT_CRT_BASE64"
+        - client_crt: "$VPN_CERT_CRT_BASE64"
+        - client_key: "$VPN_KEY"
         - ta_key: "$VPN_TA_KEY"
-        - key: "$VPN_KEY"        
     - change-workdir:
         title: Switch working dir to test / _tmp dir
         description: |-

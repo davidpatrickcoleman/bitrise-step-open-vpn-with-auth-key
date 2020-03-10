@@ -28,9 +28,6 @@ An example `.bitrise.secrets.yml` file:
 ```
 envs:
 - VPN_HOST: host
-- VPN_DNS: 0.0.0.0
-- VPN_DNS2: 0.0.0.1
-- VPN_SEARCH_DOMAIN: internal.example.com
 - VPN_PORT: 443
 - VPN_PROTO: tcp-client
 - VPN_CA_CRT_BASE64: |
