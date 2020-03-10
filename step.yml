@@ -1,0 +1,104 @@
+title: |-
+  Connect to OpenVPN Server
+summary: |
+  Establish a VPN connection with the specified OpenVPN server and by using a username and a password for authentication.
+description: |
+  Before using this step, you need to build an OpenVPN server which requires username and password for authentication in advance.
+  This article is helpful for how to construct OpenVPN server.
+  https://www.digitalocean.com/community/tutorials/how-to-set-up-an-openvpn-server-on-ubuntu-18-04
+
+website: https://github.com/alikayhan/bitrise-step-open-vpn/tree/use_credentials
+source_code_url: https://github.com/alikayhan/bitrise-step-open-vpn/tree/use_credentials
+support_url: https://github.com/alikayhan/bitrise-step-open-vpn/issues
+host_os_tags:
+  - osx-10.10
+  - ubuntu-16.04
+
+type_tags:
+  - access-control
+
+is_requires_admin_user: true
+is_always_run: false
+is_skippable: false
+run_if: ""
+
+deps:
+  brew:
+  - name: openvpn
+  apt_get:
+  - name: openvpn
+  - name: net-tools
+
+toolkit:
+  bash:
+    entry_file: step.sh
+
+inputs:
+  - host: "$VPN_HOST"
+    opts:
+      title: "Host"
+      summary: "Open VPN Server IP or Hostname"
+      description: "Open VPN Server IP or Hostname"
+      is_expand: true
+      is_required: true
+  - vpn_dns: "$VPN_DNS"
+    opts:
+      title: "VPN DNS"
+      summary: "VPN DNS Server Address"
+      description: "DNS address to resolve the domains correctly"
+      is_expand: true
+      is_required: true
+  - vpn_dns2: "$VPN_DNS2"
+    opts:
+      title: "VPN DNS 2"
+      summary: "Second VPN DNS Server Address"
+      description: "Another DNS address to resolve the domains correctly"
+      is_expand: true
+      is_required: true
+  - search_domain: "$VPN_SEARCH_DOMAIN"
+    opts:
+      title: "Search Domain"
+      summary: "Search Domain Address"
+      description: "Search domain address to resolve the domains correctly"
+      is_expand: true
+      is_required: true    
+  - port: "$VPN_PORT"
+    opts:
+      title: "Port"
+      summary: "Open VPN Server Port number"
+      description: "The port number to connect to Open VPN Server"
+      is_expand: true
+      is_required: true
+  - proto: "$VPN_PROTO"
+    opts:
+      title: "Protocol"
+      summary: "Open VPN Server Protocol"
+      description: "The protocol to connect to Open VPN Server"
+      is_expand: true
+      is_required: true
+      value_options:
+        - udp
+        - tcp
+        - tcp-client
+  - key: "$VPN_KEY"
+    opts:
+      title: "Private Key"
+      summary: "Private key to get authorized for VPN server"
+      description: "Private key to get authorized for VPN server"
+      is_required: true
+      is_expand: true
+      is_sensitive: true
+  - ca_crt: "$VPN_CA_CRT_BASE64"
+    opts:
+      title: "Base64 encoded CA Certificate"
+      summary: "Base64 encoded CA Certificate"
+      is_expand: true
+      is_required: true
+      is_sensitive: true
+  - ta_key: "$VPN_TA_KEY"
+    opts:
+      title: "TA Key"
+      summary: "TA Key"
+      is_expand: true
+      is_required: true
+      is_sensitive: true
