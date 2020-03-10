@@ -11,6 +11,7 @@ app:
   - VPN_PORT: $VPN_PORT
   - VPN_PROTO: $VPN_PROTO
   - VPN_CA_CRT_BASE64: $VPN_CA_CRT_BASE64
+  - VPN_CERT_CRT_BASE64: $VPN_CERT_CRT_BASE64
   - VPN_KEY: $VPN_KEY   
   - VPN_TA_KEY: $VPN_TA_KEY 
   # If you want to share this step into a StepLib
@@ -31,6 +32,7 @@ workflows:
         - port: "$VPN_PORT"
         - proto: "$VPN_PROTO"
         - ca_crt: "$VPN_CA_CRT_BASE64"
+        - cert: "$VPN_CERT_CRT_BASE64"
         - ta_key: "$VPN_TA_KEY"
         - key: "$VPN_KEY"        
     - change-workdir:

@@ -9,6 +9,9 @@ case "$OSTYPE" in
     echo "${ca_crt}" > /etc/openvpn/ca.crt
     echo "Preparing TA"
     echo "${ta_key}" > /etc/openvpn/ta.key
+    echo "Preparing Cert"    
+    echo "${cert}" > /etc/openvpn/cert.crt    
+    echo "Preparing Key"    
     echo "${key}" > /etc/openvpn/key.txt
 
     cat <<EOF > /etc/openvpn/client.conf
@@ -24,6 +27,7 @@ comp-lzo
 verb 3
 ca /etc/openvpn/ca.crt
 tls-auth /etc/openvpn/ta.key
+cert /etc/openvpn/cert.crt
 key /etc/openvpn/key.txt
 cipher AES-256-CBC
 auth SHA256
@@ -57,10 +61,11 @@ EOF
     
     echo "${ca_crt}" > ca.crt
     echo "${ta_key}" > ta.key
+    echo "${cert}" > cert.crt    
     echo "${key}" > key.txt
 
     # We call openvpn as a command, indicating all the necessary parameters by command line
-    sudo openvpn --client --tls-client --remote-cert-tls server --resolv-retry infinite --dev tun --proto ${proto} --remote ${host} ${port} --key key.txt --auth SHA256 --persist-key --persist-tun --compress lz4-v2 --cipher AES-256-CBC --ca ca.crt --tls-auth ta.key --key-direction 1 > /dev/null 2>&1 &
+    sudo openvpn --client --tls-client --remote-cert-tls server --resolv-retry infinite --dev tun --proto ${proto} --remote ${host} ${port} --key key.txt --cert cert.crt --auth SHA256 --persist-key --persist-tun --compress lz4-v2 --cipher AES-256-CBC --ca ca.crt --tls-auth ta.key --key-direction 1 > /dev/null 2>&1 &
     
     sleep 5
 

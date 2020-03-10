@@ -80,6 +80,13 @@ inputs:
         - udp
         - tcp
         - tcp-client
+  - cert: "$VPN_CERT_CRT_BASE64"
+    opts:
+      title: "Base64 encoded cert"
+      summary: "Base64 encoded cert"
+      is_expand: true
+      is_required: true
+      is_sensitive: true
   - key: "$VPN_KEY"
     opts:
       title: "Private Key"

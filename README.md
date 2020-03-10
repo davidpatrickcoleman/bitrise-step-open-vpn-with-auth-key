@@ -1,6 +1,6 @@
 # Connect to OpenVPN Server with Private key-based Authentication
 
-Establish a VPN connection with the specified OpenVPN server and by using a private key for authentication.
+Establish a VPN connection with the specified OpenVPN server and by using a cert/private key for authentication.
 
 
 ## How to use this Step
@@ -27,8 +27,6 @@ An example `.bitrise.secrets.yml` file:
 
 ```
 envs:
-- VPN_USER: username
-- VPN_PASSWORD: password
 - VPN_HOST: host
 - VPN_DNS: 0.0.0.0
 - VPN_DNS2: 0.0.0.1
@@ -49,7 +47,14 @@ envs:
     goes
     here
     -----END OpenVPN Static key V1-----
-- VPN_KEY: | 
+- VPN_CERT: |
+    -----BEGIN CERTIFICATE-----
+    multiple
+    lines
+    goes
+    here
+    -----END CERTIFICATE-----   
+- VPN_KEY: |
     -----BEGIN PRIVATE KEY-----
     multiple
     lines
