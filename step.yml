@@ -59,14 +59,14 @@ inputs:
         - udp
         - tcp
         - tcp-client
-  - client_crt: "$VPN_CLIENT_CRT_BASE64"
+  - client_crt: "$VPN_CERT_CRT_BASE64"
     opts:
       title: "Base64 encoded Client Certificate"
       summary: "Base64 encoded Client Certificate"
       is_expand: true
       is_required: true
       is_sensitive: true
-  - client_key: "$VPN_CLIENT_KEY_BASE64"
+  - client_key: "$VPN_KEY"
     opts:
       title: "Base64 encoded Client Private Key"
       summary: "Base64 encoded Client Private Key"
